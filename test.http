@@ -1,0 +1,466 @@
+### =========================
+### ADMIN
+### =========================
+
+### Create Admin
+POST http://localhost:8081/admins
+Content-Type: application/json
+
+{
+  "name": "Admin Sara",
+  "email": "admin@gmail.com"
+}
+
+###
+
+### Get All Admins
+GET http://localhost:8081/admins
+
+###
+
+### Get Admin By ID
+GET http://localhost:8081/admins/1
+
+
+### =========================
+### STUDENT
+### =========================
+
+### Create Student
+POST http://localhost:8081/students
+Content-Type: application/json
+
+{
+  "name": "Sara",
+  "email": "sara@gmail.com"
+}
+
+###
+
+### Get All Students
+GET http://localhost:8081/students
+
+###
+
+### Get Student By ID
+GET http://localhost:8081/students/1
+
+###
+
+### Update Student
+PUT http://localhost:8081/students/1
+Content-Type: application/json
+
+{
+  "name": "Sara Updated",
+  "email": "sara.updated@gmail.com"
+}
+
+
+### =========================
+### TEACHER
+### =========================
+
+### Create Teacher
+POST http://localhost:8081/teachers
+Content-Type: application/json
+
+{
+  "name": "Mr Ahmed",
+  "email": "ahmed@gmail.com"
+}
+
+###
+
+### Get All Teachers
+GET http://localhost:8081/teachers
+
+###
+
+### Get Teacher By ID
+GET http://localhost:8081/teachers/1
+
+###
+
+### Update Teacher
+PUT http://localhost:8081/teachers/1
+Content-Type: application/json
+
+{
+  "name": "Mr Ahmed Updated",
+  "email": "ahmed.updated@gmail.com"
+}
+
+
+### =========================
+### COURSE
+### =========================
+
+### Create Course
+POST http://localhost:8081/courses
+Content-Type: application/json
+
+{
+  "name": "Spring Boot",
+  "teacherId": 1
+}
+
+###
+
+### Get All Courses
+GET http://localhost:8081/courses
+
+###
+
+### Get Course By ID
+GET http://localhost:8081/courses/1
+
+###
+
+### Update Course
+PUT http://localhost:8081/courses/1
+Content-Type: application/json
+
+{
+  "name": "Advanced Spring Boot",
+  "teacherId": 1
+}
+
+
+### =========================
+### ENROLLMENT
+### =========================
+
+### Create Enrollment
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "courseId": 1
+}
+
+###
+
+### Get All Enrollments
+GET http://localhost:8081/enrollments
+
+###
+
+### Get Enrollment By ID
+GET http://localhost:8081/enrollments/1
+
+###
+
+### Update Enrollment
+PUT http://localhost:8081/enrollments/1
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "courseId": 1
+}
+
+###
+
+### Duplicate Enrollment - Should Return 400
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "courseId": 1
+}
+###returned 500
+
+
+### =========================
+### DISCUSSION
+### =========================
+
+### Create Discussion
+POST http://localhost:8081/discussions
+Content-Type: application/json
+
+{
+  "title": "Spring Question",
+  "content": "How does @Transactional work?",
+  "studentId": 1,
+  "courseId": 1
+}
+
+###
+
+### Get All Discussions
+GET http://localhost:8081/discussions
+
+###
+
+### Get Discussion By ID
+GET http://localhost:8081/discussions/1
+
+###
+
+### Get Discussions For Course
+GET http://localhost:8081/discussions/course/1
+
+###
+
+### Update Discussion
+PUT http://localhost:8081/discussions/1
+Content-Type: application/json
+
+{
+  "title": "Updated Spring Question",
+  "content": "What is the difference between REQUIRED and REQUIRES_NEW?",
+  "studentId": 1,
+  "courseId": 1
+}
+
+
+### =========================
+### VALIDATION TESTS
+### =========================
+
+### Invalid Student - Should Return 400
+POST http://localhost:8081/students
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "not-an-email"
+}
+
+### returns 500
+
+### Invalid Teacher - Should Return 400
+POST http://localhost:8081/teachers
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "wrong"
+}
+
+###returns 500
+
+### Invalid Course - Should Return 400
+POST http://localhost:8081/courses
+Content-Type: application/json
+
+{
+  "name": "",
+  "teacherId": null
+}
+
+###
+
+### Invalid Enrollment - Should Return 400
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": null,
+  "courseId": null
+}
+
+###sends 400 withmessage
+
+### Invalid Discussion - Should Return 400
+POST http://localhost:8081/discussions
+Content-Type: application/json
+
+{
+  "title": "",
+  "content": "",
+  "studentId": null,
+  "courseId": null
+}
+### gets 400 
+
+### =========================
+### 404 TESTS
+### =========================
+
+### Student Not Found
+GET http://localhost:8081/students/999
+
+###
+
+### Teacher Not Found
+GET http://localhost:8081/teachers/999
+
+###
+
+### Course Not Found
+GET http://localhost:8081/courses/999
+
+###
+
+### Enrollment Not Found
+GET http://localhost:8081/enrollments/999
+
+###
+
+### Discussion Not Found
+GET http://localhost:8081/discussions/999
+### Create Student 2
+POST http://localhost:8081/students
+Content-Type: application/json
+
+{
+  "name": "Maya",
+  "email": "maya@gmail.com"
+}
+
+### Create Student 3
+POST http://localhost:8081/students
+Content-Type: application/json
+
+{
+  "name": "Lina",
+  "email": "lina@gmail.com"
+}
+
+### Create Teacher 2
+POST http://localhost:8081/teachers
+Content-Type: application/json
+
+{
+  "name": "Dr. Ahmed",
+  "email": "ahmed@gmail.com"
+}
+
+### Create Teacher 3
+POST http://localhost:8081/teachers
+Content-Type: application/json
+
+{
+  "name": "Ms. Sara",
+  "email": "sara.teacher@gmail.com"
+}
+
+### Create Course 2
+POST http://localhost:8081/courses
+Content-Type: application/json
+
+{
+  "name": "Database Systems",
+  "teacherId": 2
+}
+
+### Create Course 3
+POST http://localhost:8081/courses
+Content-Type: application/json
+
+{
+  "name": "Machine Learning",
+  "teacherId": 3
+}
+### Student 1 -> Course 1
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "courseId": 1
+}
+### Student 2 -> Course 1
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": 2,
+  "courseId": 1
+}
+### Student 2 -> Course 2
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": 2,
+  "courseId": 2
+}
+### Student 3 -> Course 3
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": 3,
+  "courseId": 3
+}
+### Discussion 1
+POST http://localhost:8081/discussions
+Content-Type: application/json
+
+{
+  "title": "Question about the first lecture",
+  "content": "Can you explain the main concept again?",
+  "studentId": 1,
+  "courseId": 1
+}
+
+### Discussion 2
+POST http://localhost:8081/discussions
+Content-Type: application/json
+
+{
+  "title": "Database question",
+  "content": "What is the difference between a primary key and a foreign key?",
+  "studentId": 2,
+  "courseId": 2
+}
+
+### Discussion 3
+POST http://localhost:8081/discussions
+Content-Type: application/json
+
+{
+  "title": "ML project",
+  "content": "When is the project deadline?",
+  "studentId": 3,
+  "courseId": 3
+}
+
+### Discussion 4
+POST http://localhost:8081/discussions
+Content-Type: application/json
+
+{
+  "title": "Another question",
+  "content": "Can we have more examples?",
+  "studentId": 2,
+  "courseId": 1
+}
+### All Students
+GET http://localhost:8081/students
+
+### All Teachers
+GET http://localhost:8081/teachers
+
+### All Courses
+GET http://localhost:8081/courses
+
+### All Enrollments
+GET http://localhost:8081/enrollments
+
+### All Discussions
+GET http://localhost:8081/discussions
+### All discussions for Course 1
+GET http://localhost:8081/discussions/course/1
+### Enrollment with nonexistent student
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": 999,
+  "courseId": 1
+}
+### Enrollment with nonexistent course
+POST http://localhost:8081/enrollments
+Content-Type: application/json
+
+{
+  "studentId": 1,
+  "courseId": 999
+}
